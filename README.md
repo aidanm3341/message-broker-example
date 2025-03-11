@@ -1,8 +1,9 @@
 # Example Message Broker Project
 
-This is a simple example project to showcase how to use the MessageBroker OSS project.
+This is a simple example project to showcase how to use the
+[MessageBroker OSS](https://github.com/morganstanley/message-broker) project.
 
-You can find some examples of MessageBroker usage inside blocks of comments like this:
+You can find some examples of MessageBroker usage throughout the app inside blocks of comments like this:
 
 ```typescript
 /////////////
