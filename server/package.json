@@ -1,0 +1,10 @@
+{
+    "name": "@message-broker-example/server",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "deno run --allow-net main.ts",
+        "build": "echo 'No build step required for Deno server'"
+    }
+}

@@ -13,17 +13,40 @@ etc...
 /////////////
 ```
 
+## Project Structure
+
+This is a monorepo with two packages:
+- `client/` - React/Vite frontend application
+- `server/` - Deno WebSocket server
+
 ## Running the app
 
-This is a Deno app, please go to the deno documentation for more info on how Deno works. It uses Vite as the build tool.
-
-These are the commands available:
-
-```
-"dev": "vite",
-"build": "tsc -b && vite build",
-"lint": "eslint .",
-"preview": "vite preview"
+First, install dependencies:
+```bash
+npm install
 ```
 
-use `deno run dev` to start the project locally.
+### Running the client
+```bash
+npm run dev:client
+```
+
+### Running the server
+```bash
+npm run dev:server
+```
+
+### Building
+```bash
+# Build both client and server
+npm run build
+
+# Or build individually
+npm run build:client
+npm run build:server
+```
+
+### Linting
+```bash
+npm run lint
+```
