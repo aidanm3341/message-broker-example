@@ -1,5 +1,6 @@
-import React from 'react';
 import { Line, LineChart } from 'recharts';
+import { CHART_CONFIG } from '../../config/constants.ts';
+import { styles } from './styles.ts';
 
 interface LineViewProps {
     data: unknown[];
@@ -8,18 +9,13 @@ interface LineViewProps {
 
 export function LineView({ data, dataKey }: LineViewProps) {
     return (
-        <div
-            style={{
-                border: '1px solid #444444',
-                padding: '1rem',
-            }}
-        >
-            <LineChart width={300} height={200} data={data}>
+        <div style={styles.container}>
+            <LineChart width={CHART_CONFIG.WIDTH} height={CHART_CONFIG.HEIGHT} data={data}>
                 <Line
                     type='monotone'
                     dataKey={dataKey}
-                    stroke='#8884d8'
-                    strokeWidth={2}
+                    stroke={CHART_CONFIG.STROKE_COLOR}
+                    strokeWidth={CHART_CONFIG.STROKE_WIDTH}
                     isAnimationActive={false}
                     dot={false}
                 />

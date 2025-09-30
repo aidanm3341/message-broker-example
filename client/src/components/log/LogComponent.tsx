@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { IStockContract } from '../../contracts.ts';
+import { useEffect, useState } from 'react';
 import { messagebroker } from '@morgan-stanley/message-broker';
+import { IStockContract } from '../../contracts.ts';
+import { formatTime } from '../../utils/formatTime.ts';
+import { styles } from './styles.ts';
 
-interface Event {
+const broker = messagebroker<IStockContract>();
+
+interface LogEvent {
     time: Date;
     message: string;
 }
 
-const broker = messagebroker<IStockContract>();
-
 export function LogComponent() {
-    const [events, setEvents] = useState<Event[]>([]);
+    const [events, setEvents] = useState<LogEvent[]>([]);
 
-    ///////////
     useEffect(() => {
-        const subscription = broker.get('price-update').subscribe(
+        const priceSubscription = broker.get('price-update').subscribe(
             (newStockValue) => {
                 setEvents((prevState) => [
                     ...prevState,
@@ -25,11 +26,8 @@ export function LogComponent() {
                 ]);
             },
         );
-        return () => subscription.unsubscribe();
-    }, []);
 
-    useEffect(() => {
-        const subscription = broker.get('watch-stock').subscribe((message) => {
+        const watchSubscription = broker.get('watch-stock').subscribe((message) => {
             setEvents((prevEvents) => [
                 ...prevEvents,
                 {
@@ -38,37 +36,38 @@ export function LogComponent() {
                 },
             ]);
         });
-        return () => subscription.unsubscribe();
+
+        return () => {
+            priceSubscription.unsubscribe();
+            watchSubscription.unsubscribe();
+        };
     }, []);
-    /////////////
+
+    const sortedEvents = [...events].sort((a, b) => b.time.getTime() - a.time.getTime());
 
     return (
-        <div
-            style={{
-                backgroundColor: 'rgb(28, 28, 28)',
-                padding: '1rem',
-                overflowY: 'auto',
-                maxHeight: '100vh',
-            }}
-        >
-            <h2>Log</h2>
-            <table
-                style={{
-                    justifySelf: 'end',
-                    alignSelf: 'end',
-                }}
-            >
-                <tr>
-                    <th>Time Received</th>
-                    <th>Message</th>
-                </tr>
-                {events.sort((ev1, ev2) => ev2.time.getTime() - ev1.time.getTime()).map((event, index) => (
-                    <tr key={index}>
-                        <td>{event.time.getHours() + ':' + event.time.getMinutes() + ':' + event.time.getSeconds()}</td>
-                        <td>{event.message}</td>
-                    </tr>
-                ))}
-            </table>
+        <div style={styles.container}>
+            <div style={styles.header}>
+                <h2>Log</h2>
+            </div>
+            <div style={styles.tableContainer}>
+                <table style={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Time Received</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sortedEvents.map((event, index) => (
+                            <tr key={index}>
+                                <td>{formatTime(event.time)}</td>
+                                <td>{event.message}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
