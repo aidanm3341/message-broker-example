@@ -18,5 +18,6 @@ export const styles = {
         margin: '0 0 0.5rem 0',
         fontSize: '1.2rem',
         fontWeight: '600',
+        fontFamily: 'monospace',
     } as CSSProperties,
 };

@@ -29,11 +29,14 @@ export function SimpleTicker({ symbol }: SimpleTickerProps) {
 
     const isPriceNegative = data && initialPrice && data.price < initialPrice;
     const priceStyle = isPriceNegative ? styles.priceNegative : styles.pricePositive;
+    const arrow = isPriceNegative ? '▼' : '▲';
 
     return (
         <div style={styles.container}>
             <p style={styles.symbol}>{symbol}</p>
-            <p style={priceStyle}>{data.price}</p>
+            <p style={priceStyle}>
+                {arrow} ${data.price.toFixed(2)}
+            </p>
         </div>
     );
 }

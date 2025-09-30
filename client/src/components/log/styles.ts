@@ -3,8 +3,7 @@ import { CSSProperties } from 'react';
 export const styles = {
     container: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        backdropFilter: 'blur(10px)',
-        height: '100vh',
+        height: '100%',
         width: '400px',
         minWidth: '400px',
         display: 'flex',
@@ -46,7 +45,6 @@ export const styles = {
         position: 'sticky',
         top: 0,
         background: 'rgba(0, 0, 0, 0.8)',
-        backdropFilter: 'blur(10px)',
     } as CSSProperties,
 
     tableRow: {

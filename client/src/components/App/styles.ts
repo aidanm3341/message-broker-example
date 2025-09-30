@@ -3,10 +3,27 @@ import { CSSProperties } from 'react';
 export const styles = {
     root: {
         display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
+        flexDirection: 'column',
         width: '100vw',
         height: '100vh',
+    } as CSSProperties,
+
+    tickerBar: {
+        display: 'flex',
+        width: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+        overflow: 'hidden',
+        position: 'relative',
+    } as CSSProperties,
+
+    contentRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        flex: 1,
+        overflow: 'hidden',
     } as CSSProperties,
 
     mainContent: {
@@ -14,20 +31,19 @@ export const styles = {
         flexDirection: 'column',
         alignItems: 'center',
         flex: '1',
-        paddingTop: '5rem',
+        paddingTop: '2rem',
         overflow: 'hidden',
     } as CSSProperties,
-
-    tickerBar: {
+    tickerScroll: {
         display: 'flex',
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        right: '0',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-        backdropFilter: 'blur(10px)',
-        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-        overflow: 'auto',
+        animation: 'scroll 30s linear infinite',
+        whiteSpace: 'nowrap',
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+    } as CSSProperties,
+    tickerContent: {
+        display: 'flex',
     } as CSSProperties,
 
     form: {

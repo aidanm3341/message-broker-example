@@ -27,29 +27,38 @@ function App() {
 
     return (
         <div style={styles.root}>
-            <div style={styles.mainContent}>
-                <h1>Stock Tracker</h1>
-                <div style={styles.tickerBar}>
-                    {symbols.map((symbol) => <SimpleTicker key={symbol} symbol={symbol} />)}
-                </div>
-
-                <form action={addSymbol} style={styles.form}>
-                    <input
-                        style={styles.input}
-                        name='query'
-                        placeholder='Enter stock symbol'
-                    />
-                    <button type='submit'>Add</button>
-                </form>
-
-                <div style={styles.trackerContainer}>
-                    <div style={styles.trackerInner}>
-                        {symbols.map((symbol) => <SingleTickerTracker key={symbol} symbol={symbol} />)}
+            <div style={styles.tickerBar}>
+                <div style={styles.tickerScroll}>
+                    <div style={styles.tickerContent}>
+                        {symbols.map((symbol) => <SimpleTicker key={`${symbol}-1`} symbol={symbol} />)}
+                    </div>
+                    <div style={styles.tickerContent}>
+                        {symbols.map((symbol) => <SimpleTicker key={`${symbol}-2`} symbol={symbol} />)}
                     </div>
                 </div>
             </div>
-            <div>
-                <LogComponent />
+            <div style={styles.contentRow}>
+                <div style={styles.mainContent}>
+                    <h1>Stock Tracker</h1>
+
+                    <form action={addSymbol} style={styles.form}>
+                        <input
+                            style={styles.input}
+                            name='query'
+                            placeholder='Enter stock symbol'
+                        />
+                        <button type='submit'>Add</button>
+                    </form>
+
+                    <div style={styles.trackerContainer}>
+                        <div style={styles.trackerInner}>
+                            {symbols.map((symbol) => <SingleTickerTracker key={symbol} symbol={symbol} />)}
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <LogComponent />
+                </div>
             </div>
         </div>
     );

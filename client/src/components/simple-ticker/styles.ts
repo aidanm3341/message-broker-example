@@ -16,6 +16,7 @@ export const styles = {
         fontSize: '1.25rem',
         marginRight: '1rem',
         color: 'rgba(255, 255, 255, 0.9)',
+        fontFamily: 'monospace',
     } as CSSProperties,
 
     pricePositive: {
@@ -23,6 +24,7 @@ export const styles = {
         fontSize: '1.25rem',
         fontWeight: '600',
         textShadow: '0 0 10px rgba(16, 185, 129, 0.3)',
+        fontFamily: 'monospace',
     } as CSSProperties,
 
     priceNegative: {
@@ -30,5 +32,6 @@ export const styles = {
         fontSize: '1.25rem',
         fontWeight: '600',
         textShadow: '0 0 10px rgba(239, 68, 68, 0.3)',
+        fontFamily: 'monospace',
     } as CSSProperties,
 };
