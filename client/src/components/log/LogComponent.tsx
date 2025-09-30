@@ -13,6 +13,7 @@ interface LogEvent {
 
 export function LogComponent() {
     const [events, setEvents] = useState<LogEvent[]>([]);
+    const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
     useEffect(() => {
         const priceSubscription = broker.get('price-update').subscribe(
@@ -54,15 +55,23 @@ export function LogComponent() {
                 <table style={styles.table}>
                     <thead>
                         <tr>
-                            <th>Time Received</th>
-                            <th>Message</th>
+                            <th style={styles.tableHeader}>Time Received</th>
+                            <th style={styles.tableHeader}>Message</th>
                         </tr>
                     </thead>
                     <tbody>
                         {sortedEvents.map((event, index) => (
-                            <tr key={index}>
-                                <td>{formatTime(event.time)}</td>
-                                <td>{event.message}</td>
+                            <tr
+                                key={index}
+                                style={{
+                                    ...styles.tableRow,
+                                    ...(hoveredRow === index ? styles.tableRowHover : {}),
+                                }}
+                                onMouseEnter={() => setHoveredRow(index)}
+                                onMouseLeave={() => setHoveredRow(null)}
+                            >
+                                <td style={styles.timeCell}>{formatTime(event.time)}</td>
+                                <td style={styles.tableCell}>{event.message}</td>
                             </tr>
                         ))}
                     </tbody>
