@@ -13,9 +13,9 @@ export const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        overflowX: 'auto',
         flex: '1',
+        paddingTop: '5rem',
+        overflow: 'hidden',
     } as CSSProperties,
 
     tickerBar: {
@@ -23,6 +23,11 @@ export const styles = {
         position: 'absolute',
         top: '0',
         left: '0',
+        right: '0',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backdropFilter: 'blur(10px)',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+        overflow: 'auto',
     } as CSSProperties,
 
     form: {
@@ -37,5 +42,18 @@ export const styles = {
 
     trackerContainer: {
         display: 'flex',
+        gap: '1.5rem',
+        flexWrap: 'wrap',
+        marginTop: '2rem',
+        overflowY: 'auto',
+        flex: '1',
+        width: '100%',
+        padding: '0 2rem 2rem 2rem',
+        alignContent: 'flex-start',
+        position: 'relative',
+        maskImage:
+            'linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 100px), transparent 100%)',
+        WebkitMaskImage:
+            'linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 100px), transparent 100%)',
     } as CSSProperties,
 };

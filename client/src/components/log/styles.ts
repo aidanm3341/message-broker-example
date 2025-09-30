@@ -2,17 +2,21 @@ import { CSSProperties } from 'react';
 
 export const styles = {
     container: {
-        backgroundColor: 'rgb(28, 28, 28)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(10px)',
         height: '100vh',
         width: '400px',
         minWidth: '400px',
         display: 'flex',
         flexDirection: 'column',
+        borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
     } as CSSProperties,
 
     header: {
         padding: '1rem',
         paddingBottom: '0.5rem',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        background: 'rgba(102, 126, 234, 0.1)',
     } as CSSProperties,
 
     tableContainer: {
