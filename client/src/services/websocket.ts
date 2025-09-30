@@ -16,5 +16,5 @@ export async function initializeWebSocket(): Promise<void> {
     await wsAdapter.connect();
 
     const adapterId = broker.registerAdapter(wsAdapter);
-    console.log('✅ WebSocket adapter registered with ID:', adapterId);
+    console.log('WebSocket adapter registered with ID:', adapterId);
 }

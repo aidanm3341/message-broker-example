@@ -13,7 +13,7 @@ export class WebSocketServer {
     private updateInterval: number | null = null;
 
     start(port: number = SERVER_CONFIG.PORT): void {
-        console.log(`🚀 WebSocket server starting on port ${port}...`);
+        console.log(`WebSocket server starting on port ${port}...`);
 
         Deno.serve({ port }, (req) => {
             if (req.headers.get('upgrade') === 'websocket') {
@@ -32,11 +32,11 @@ export class WebSocketServer {
         });
 
         this.startPriceUpdates();
-        console.log(`✅ WebSocket server running on ws://localhost:${port}`);
+        console.log(`WebSocket server running on ws://localhost:${port}`);
     }
 
     private handleClientConnect(socket: WebSocket): void {
-        console.log('✅ Client connected');
+        console.log('Client connected');
         this.clients.add(socket);
         this.sendExistingStocks(socket);
     }
@@ -48,7 +48,7 @@ export class WebSocketServer {
             if (isWatchStockMessage(data)) {
                 const symbol = data.message.data as Symbol;
                 this.watchStock(symbol);
-                console.log(`📊 Client watching: ${symbol}`);
+                console.log(`Client watching: ${symbol}`);
             }
         } catch (error) {
             console.error('Failed to parse message:', error);
@@ -56,7 +56,7 @@ export class WebSocketServer {
     }
 
     private handleClientDisconnect(socket: WebSocket): void {
-        console.log('❌ Client disconnected');
+        console.log('Client disconnected');
         this.clients.delete(socket);
     }
 
@@ -107,7 +107,7 @@ export class WebSocketServer {
 
     private sendPriceUpdate(socket: WebSocket, stock: StockData): void {
         const message = createPriceUpdateMessage(stock);
-        console.log(`➡️ Sending to ${stock.symbol}: $${stock.price}`);
+        console.log(`Sending to ${stock.symbol}: $${stock.price}`);
         socket.send(JSON.stringify(message));
     }
 }

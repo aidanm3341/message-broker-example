@@ -15,7 +15,7 @@ export function SingleTickerTracker({ symbol }: SingleTickerTrackerProps) {
 
     useEffect(() => {
         console.log(
-            `🎯 SingleTickerTracker subscribing to price-update for ${symbol}`,
+            `SingleTickerTracker subscribing to price-update for ${symbol}`,
         );
         const subscription = broker.get("price-update").subscribe(
             (newStockValue) => {
@@ -29,7 +29,7 @@ export function SingleTickerTracker({ symbol }: SingleTickerTrackerProps) {
 
     return (
         <div style={styles.container}>
-            <h2>{symbol}</h2>
+            <h2 style={styles.title}>{symbol}</h2>
             <LineView data={data} dataKey="price" />
         </div>
     );

@@ -20,7 +20,7 @@ function App() {
             return;
         }
 
-        console.log('🔵 Publishing watch-stock:', queryString);
+        console.log('Publishing watch-stock:', queryString);
         watchStockChannel.publish(queryString);
         setSymbols((oldSymbols) => [...oldSymbols, queryString]);
     }
@@ -43,7 +43,9 @@ function App() {
                 </form>
 
                 <div style={styles.trackerContainer}>
-                    {symbols.map((symbol) => <SingleTickerTracker key={symbol} symbol={symbol} />)}
+                    <div style={styles.trackerInner}>
+                        {symbols.map((symbol) => <SingleTickerTracker key={symbol} symbol={symbol} />)}
+                    </div>
                 </div>
             </div>
             <div>

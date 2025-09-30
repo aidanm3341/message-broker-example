@@ -44,7 +44,8 @@ export const styles = {
         display: 'flex',
         gap: '1.5rem',
         flexWrap: 'wrap',
-        marginTop: '2rem',
+        justifyContent: 'center',
+        marginTop: '3rem',
         overflowY: 'auto',
         flex: '1',
         width: '100%',
@@ -55,5 +56,13 @@ export const styles = {
             'linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 100px), transparent 100%)',
         WebkitMaskImage:
             'linear-gradient(to bottom, transparent 0%, black 20px, black calc(100% - 100px), transparent 100%)',
+    } as CSSProperties,
+    trackerInner: {
+        display: 'flex',
+        gap: '1.5rem',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        width: '100%',
+        paddingTop: '1.5rem',
     } as CSSProperties,
 };

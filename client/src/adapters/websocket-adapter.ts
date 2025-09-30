@@ -54,7 +54,7 @@ export class WebSocketAdapter<T> implements IMessageBrokerAdapter<T> {
     }
 
     private handleOpen(resolve: () => void): void {
-        console.log('🔌 WebSocket connection established');
+        console.log('WebSocket connection established');
         this.reconnectAttempts = 0;
         this.clearReconnectTimer();
         resolve();
@@ -93,16 +93,16 @@ export class WebSocketAdapter<T> implements IMessageBrokerAdapter<T> {
             id: this.generateId(),
             isHandled: false,
         };
-        console.log('✅ Raw message, wrapping and forwarding:', message);
+        console.log('Raw message, wrapping and forwarding:', message);
         this.messageSubject.next(message);
     }
 
     private logInvalidMessage(data: unknown): void {
-        console.warn('❌ Invalid message format:', data);
+        console.warn('Invalid message format:', data);
 
         if (typeof data === 'object' && data !== null) {
             const msg = data as Record<string, unknown>;
-            console.warn('❌ Validation details:', {
+            console.warn('Validation details:', {
                 hasData: data !== undefined && data !== null,
                 hasChannelName: typeof msg.channelName === 'string',
                 hasDataField: msg.data !== undefined,
@@ -146,7 +146,7 @@ export class WebSocketAdapter<T> implements IMessageBrokerAdapter<T> {
 
     sendMessage(channelName: keyof T, message: IMessage): Promise<void> {
         if (!this.isConnected()) {
-            console.error('❌ WebSocket is not connected!');
+            console.error('WebSocket is not connected!');
             return Promise.reject(new Error('WebSocket is not connected'));
         }
 
