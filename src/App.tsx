@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { StockService } from './services/StockService.ts';
 import { SingleTickerTracker } from './components/single-ticker-tracker/SingleTickerTracker.tsx';
 import { SimpleTicker } from './components/simple-ticker/SimpleTicker.tsx';
 import { LogComponent } from './components/log/LogComponent.tsx';
 import { messagebroker } from '@morgan-stanley/message-broker';
 import { IStockContract } from './contracts.ts';
-
-const stockService = new StockService();
 
 ////////////
 const broker = messagebroker<IStockContract>();
@@ -19,8 +16,8 @@ function App() {
 
     function addSymbol(formData: FormData) {
         const queryString: string = formData.get('query')?.toString() || '';
-        stockService.addStock(queryString);
         /////////////
+        console.log('🔵 Publishing watch-stock:', queryString);
         watchStockChannel.publish(queryString);
         /////////////
         setSymbols((oldSymbols) => [...oldSymbols, queryString]);
